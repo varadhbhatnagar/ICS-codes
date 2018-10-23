@@ -10,7 +10,7 @@ int main()
 	cout << "\n Enter number of pairs ";
 	cin >> n;
 
-	int i, ara[n + 1], arn[n + 1], tempgcd = 0, M = 1 , arM[n + 1], ary[n + 1], z, k = 0, answer = 0;
+	int i, ara[n + 1], arn[n + 1], M = 1 , arM[n + 1], ary[n + 1], z, k = 0, answer = 0;
 
 	for(i = 0; i < n; i++)
 	{
@@ -19,21 +19,19 @@ int main()
 		cin >> ara[i];
 		cout << "n" << i + 1 << "=";
 		cin >> arn[i];
-
-		if(!tempgcd)
-		{
-			tempgcd = arn[i];
-		}
-		else
-		{
-			if(__gcd(tempgcd, arn[i]) != 1)
-			{
-				cout << "Invalid value of n, Enter the pair again";
-				i--;
-				continue;
-			}
-			tempgcd = __gcd(tempgcd, arn[i]);
-		}
+		int flag = 0;
+        for(int j = 0; j < i; j++)
+        {
+            if(__gcd(arn[j], arn[i]) != 1)
+            {
+                cout << "Invalid value of n, Enter the pair again";
+                i--;
+                flag = 1;
+                break;
+            }
+        }
+        if(flag)
+            continue;
 		M = M * arn[i];
 	}
 
