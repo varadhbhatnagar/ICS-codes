@@ -11,6 +11,9 @@ Output Format : Value of X (Modulo Multiplicative Inverse).
 
 Input Format : Prime Numbers p and q,
                              Plaintext.
+                          
+Note : `p * q > 127` for code to work correctly for all ASCII values.
+
 Output Format : Encrypted Text and Decrypted Text.
 
 **Assignment 3: SHA1 using Cryptopp C++ Library**
