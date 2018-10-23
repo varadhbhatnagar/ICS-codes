@@ -23,4 +23,4 @@ Output Format : Hashed contents of the file ( Message Digest ).
                
 SHA1 Compilation Command:
 
-`g++ -g3 -ggdb -O0 -Wall -Wextra -Wno-unused -o Output sha1.cpp -lcryptopp`
+`g++ sha1.cpp -lcryptopp`
