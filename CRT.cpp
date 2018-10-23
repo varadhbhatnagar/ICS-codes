@@ -1,88 +1,65 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int gcd( int a , int b)
-	{
-		int t;
-		if(b>a)
-		{
-			t=a;
-			a=b;
-			b=t;
-		}
-	
-		while(a%b!=0)
-		{
-			t = a%b;
-			a = b;
-			b = t;
-		}
-
-		return b;
-	}
-	
-		
 int main()
 {
-	
-	cout<<"******************CHINESE REMAINDER THEOREM********************";
-	
+
+	cout << "******************CHINESE REMAINDER THEOREM********************";
+
 	int n;
-	cout<<"\n Enter number of pairs ";
-	cin>>n;
+	cout << "\n Enter number of pairs ";
+	cin >> n;
 
-	int i, ara[n+1], arn[n+1], tempgcd=0, M=1 , arM[n+1], ary[n+1], z, k=0, answer=0;
+	int i, ara[n + 1], arn[n + 1], tempgcd = 0, M = 1 , arM[n + 1], ary[n + 1], z, k = 0, answer = 0;
 
-	for(i=0;i<n;i++)
+	for(i = 0; i < n; i++)
 	{
-		cout<<"\n Enter pair "<<i+1<<"\n\n";
-		cout<<"a"<<i+1<<"=";
-		cin>>ara[i];
-		cout<<"n"<<i+1<<"=";
-		cin>>arn[i];
-		
+		cout << "\n Enter pair " << i + 1 << "\n\n";
+		cout << "a" << i + 1 << "=";
+		cin >> ara[i];
+		cout << "n" << i + 1 << "=";
+		cin >> arn[i];
+
 		if(!tempgcd)
 		{
 			tempgcd = arn[i];
 		}
 		else
 		{
-			if(gcd(tempgcd,arn[i])!=1)
+			if(__gcd(tempgcd, arn[i]) != 1)
 			{
-				cout<<"Invalid value of n, Enter the pair again";
+				cout << "Invalid value of n, Enter the pair again";
 				i--;
 				continue;
 			}
-			tempgcd = gcd(tempgcd,arn[i]);
+			tempgcd = __gcd(tempgcd, arn[i]);
 		}
-		
-		M = M*arn[i];
-	} 
+		M = M * arn[i];
+	}
 
-	for(i=0;i<n;i++)
+	for(i = 0; i < n; i++)
 	{
 		arM[i] = M / arn[i];
-		
+
 		z=1;
 		while(1)
 		{
-			if((z*arM[i]) % arn[i] ==1)
+			if((z * arM[i]) % arn[i] == 1)
 			{
-				ary[k++]=z;
+				ary[k++] = z;
 				break;
 			}
 			z++;
-		}  
+		}
 
 	}
 
-	for(i=0;i<n;i++)
+	for(i = 0; i < n; i++)
 	{
-		answer += (ara[i] * arM[i] * ary[i]);
-	
+		answer += (ara[i] * arM[i] * ary[i]) % M;
 	}
 
-	answer%=M;
-	
+	answer %= M;
+
 	cout<<"\n The answer of the given problem is "<<answer<<"\n\n";
 }
